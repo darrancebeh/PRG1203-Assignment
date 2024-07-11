@@ -1,3 +1,4 @@
+package Player;
 import java.util.ArrayList;
 
 public class Player {
@@ -6,6 +7,7 @@ public class Player {
     private int losses;
     private int draws;
     private int totalGames;
+    private int score;
     private ArrayList<String> pokemon_list;
 
     public Player(String username) {
@@ -14,6 +16,7 @@ public class Player {
         this.losses = 0;
         this.draws = 0;
         this.totalGames = 0;
+        this.score = 0;
         this.pokemon_list = new ArrayList<String>();
     }
 
@@ -35,6 +38,10 @@ public class Player {
 
     public int getTotalGames() {
         return totalGames;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public ArrayList<String> getPokemonList() {
