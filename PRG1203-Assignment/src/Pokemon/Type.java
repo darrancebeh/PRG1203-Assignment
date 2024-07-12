@@ -1,5 +1,4 @@
 package Pokemon;
-import java.util.Arrays;
 
 public enum Type {
     // ENUM: TYPE(SUPER_EFFECTIVE, NOT_VERY_EFFECTIVE, NO_EFFECT)
