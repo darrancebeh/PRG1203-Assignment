@@ -94,24 +94,39 @@ public enum Type {
 
     public int getEffectivenessAgainst(String type) {
         for (String t : superEffective) {
-                if (t.equals(type)) {
-                        return 1;
-                }
+            if (t.equals(type)) {
+                return 1;
+            }
         }
-
+    
         for (String t : notVeryEffective) {
-                if (t.equals(type)){
-                        return -1;
-                }
+            if (t.equals(type)) {
+                return -1;
+            }
         }
-
+    
         for (String t : noEffect) {
-                if (t.equals(type)){
-                        return -2;
-                }
+            if (t.equals(type)) {
+                return -2;
+            }
         }
-
+    
         return 0;
+    }
+
+    public String effectivenessToString(int effectiveness) {
+        switch (effectiveness) {
+            case 1:
+                return "Super effective!";
+            case 0:
+                return "Normal effectiveness.";
+            case -1:
+                return "Not very effective.";
+            case -2:
+                return "No effect.";
+            default:
+                return "Error";
         }
+    }
 
 }

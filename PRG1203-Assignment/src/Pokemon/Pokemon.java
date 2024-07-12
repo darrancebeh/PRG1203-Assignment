@@ -39,6 +39,29 @@ public class Pokemon {
         this.health = health;
     }
 
+    public void attack(Move move, Pokemon opponent) {
+        System.out.println(this.name + " used " + move.getName() + " on " + opponent.getName() + "!");
+        System.out.println("The move effectiveness was: " + move.effectivenessToString(move.getEffectivenessAgainst(opponent.getType().name())));
+        int damage = calculateDamage(move, opponent);
+        opponent.setHealth(opponent.getHealth() - damage);
+    }
+
+    public int calculateDamage(Move move, Pokemon opponent) {
+        int damage = move.getPower();
+        int effectiveness = move.getEffectivenessAgainst(opponent.getType().name());
+        if (effectiveness == 1) {
+            damage *= 2;
+        } else if (effectiveness == -1) {
+            damage /= 2;
+        } else if (effectiveness == -2) {
+            damage *= 0;
+        } else {
+            damage *= 1;
+        }
+
+        return damage;
+    }
+
     
     
 }
