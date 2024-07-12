@@ -68,4 +68,5 @@ public enum Move {
     public MoveType getMoveType() {
         return moveType;
     }
+
 }

@@ -1,8 +1,7 @@
-import java.util.ArrayList;
+package Pokemon;
 import java.util.Arrays;
-import java.util.List;
 
-public enum PokemonType {
+public enum Type {
     // ENUM: TYPE(SUPER_EFFECTIVE, NOT_VERY_EFFECTIVE, NO_EFFECT)
 
     NORMAL(new String[]{},
@@ -77,31 +76,42 @@ public enum PokemonType {
             new String[]{"Poison", "Steel", "Fire"},
             new String[]{});
 
-    
-    
     private final String[] superEffective;
     private final String[] notVeryEffective;
     private final String[] noEffect;
 
-    PokemonType(String[] superEffective, String[] notVeryEffective, String[] noEffect) {
+    Type(String[] superEffective, String[] notVeryEffective, String[] noEffect) {
         this.superEffective = superEffective;
         this.notVeryEffective = notVeryEffective;
         this.noEffect = noEffect;
     }
 
-    public boolean isSuperEffectiveAgainst(String type) {
-        return Arrays.asList(superEffective).contains(type);
-    }
+    // returns an int value to determine the effectiveness of the move
+    // 1: super effective
+    // 0: normal
+    // -1: not very effective
+    // -2: no effect
 
-    public boolean isNotVeryEffectiveAgainst(String type) {
-        return Arrays.asList(notVeryEffective).contains(type);
-    }
+    public int getEffectivenessAgainst(String type) {
+        for (String t : superEffective) {
+                if (t.equals(type)) {
+                        return 1;
+                }
+        }
 
-    public boolean isNoEffectAgainst(String type) {
-        return Arrays.asList(noEffect).contains(type);
-    }
+        for (String t : notVeryEffective) {
+                if (t.equals(type)){
+                        return -1;
+                }
+        }
 
-    public boolean isNormalEffectAgainst(String type, String[] allTypes) {
-        return !isSuperEffectiveAgainst(type) && !isNotVeryEffectiveAgainst(type) && !isNoEffectAgainst(type);
-    }
+        for (String t : noEffect) {
+                if (t.equals(type)){
+                        return -2;
+                }
+        }
+
+        return 0;
+        }
+
 }
