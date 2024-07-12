@@ -1,6 +1,30 @@
 package Pokemon;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class PokemonFactory {
+    public static String[] getAllPokemon() {
+        return new String[] {
+            "Bulbasaur",
+            "Charmander",
+            "Squirtle",
+            "Pikachu"
+        };
+    }
+
+    public static String[] randomizePokemon() {
+        String[] allPokemon = getAllPokemon();
+        List<String> allPokemonList = new ArrayList<>(Arrays.asList(allPokemon));
+        allPokemonList.addAll(Arrays.asList(allPokemon));
+        String[] randomPokemon = new String[3];
+        for (int i = 0; i < 3; i++) {
+            int randomIndex = (int) (Math.random() * allPokemonList.size());
+            randomPokemon[i] = allPokemonList.remove(randomIndex);
+        }
+        return randomPokemon;
+    }
+
     public static Pokemon createPokemon(String name) {
         switch (name) {
             case "Bulbasaur":

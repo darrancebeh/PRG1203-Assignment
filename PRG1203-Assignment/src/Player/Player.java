@@ -48,19 +48,28 @@ public class Player {
         return pokemon_list;
     }
 
-    public void addWin() {
-        wins++;
-        totalGames++;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public void addLoss() {
-        losses++;
-        totalGames++;
+    public void setWins(int wins) {
+        this.wins = wins;
     }
 
-    public void addDraw() {
-        draws++;
-        totalGames++;
+    public void setLosses(int losses) {
+        this.losses = losses;
+    }
+
+    public void setDraws(int draws) {
+        this.draws = draws;
+    }
+
+    public void setTotalGames(int totalGames) {
+        this.totalGames = totalGames;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 
     public void addPokemon(String pokemon) {
