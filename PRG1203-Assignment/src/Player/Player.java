@@ -73,7 +73,8 @@ public class Player {
     }
 
     public void addPokemon(String pokemon) {
-        pokemon_list.add(pokemon);
+        String formattedPokemon = pokemon.substring(0, 1).toUpperCase() + pokemon.substring(1).toLowerCase();
+        pokemon_list.add(formattedPokemon);
     }
 
     public void removePokemon(String pokemon) {

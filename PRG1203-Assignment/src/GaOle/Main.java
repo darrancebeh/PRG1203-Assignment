@@ -1,18 +1,47 @@
 package GaOle;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 import Pokemon.PokemonFactory;
 import Player.Player;
 
 public class Main {
-    public static void startGame() {
+    public static void newGame(Player player) {
+        System.out.println("Starting a new game...");
+        gameSetUp(player);
+
+        System.out.println("Generating scenario...");
+
+    
+
+
+
+    }
+
+    public static void gameGenerateScenario() {
+        System.out.println("Generating scenario...");
+        System.out.println("\n\nTwo wild pokemons have appeared!");
+
+
+    }
+
+    public static void gameSetUp(Player player) {
         System.out.println("These random pokemon are more likely to appear in this game: ");
-        String[] randomPokemon = Pokemon.PokemonFactory.randomizePokemon();
-        for (String pokemon : randomPokemon) {
+        ArrayList<String> randomPokemonList = new ArrayList<>();
+
+        while(randomPokemonList.size() < 3) {
+            String randomPokemon = PokemonFactory.getRandomPokemon();
+            if (!randomPokemonList.contains(randomPokemon)) {
+                randomPokemonList.add(randomPokemon);
+            }
+        }
+
+        for (String pokemon : randomPokemonList) {
             System.out.println(pokemon);
         }
 
-        System.out.println("Proceed to starting game? [Y/N]");
+
+        System.out.println("Proceed to start game? [Y/N]");
         Scanner scanner = new Scanner(System.in);
 
         String proceed = scanner.nextLine();
@@ -32,15 +61,23 @@ public class Main {
 
         System.out.println("Enter precisely, the NAME of the pokemon you want to choose: ");
         String chosenPokemon = scanner.nextLine();
+
+        boolean found = false;
         
         for(String pokemon : randomStartingPokemon) {
             if (pokemon.equalsIgnoreCase(chosenPokemon)) {
                 System.out.println("You have collected " + chosenPokemon + "!");
                 PokemonFactory.createPokemon(chosenPokemon);
+                player.addPokemon(chosenPokemon);
+                found = true;
                 break;
             }
         }
 
+        if(found = false) {
+            System.out.println("Invalid pokemon name. Exiting...");
+            return;
+        }
     }
 
     public static void main(String[] args) {
@@ -65,7 +102,7 @@ public class Main {
         switch (action) {
             case 1:
                 System.out.println("Starting a new game...");
-                startGame();
+                newGame(player);
                 break;
             case 2:
                 System.out.println("Viewing your profile...");

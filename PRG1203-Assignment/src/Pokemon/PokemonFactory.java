@@ -13,6 +13,12 @@ public class PokemonFactory {
         };
     }
 
+    public static String getRandomPokemon() {
+        String[] allPokemon = getAllPokemon();
+        int randomIndex = (int) (Math.random() * allPokemon.length);
+        return allPokemon[randomIndex];
+    }
+
     public static String[] randomizePokemon() {
         String[] allPokemon = getAllPokemon();
         List<String> allPokemonList = new ArrayList<>(Arrays.asList(allPokemon));
@@ -26,8 +32,9 @@ public class PokemonFactory {
     }
 
     public static Pokemon createPokemon(String name) {
-        switch (name) {
-            case "Bulbasaur":
+        
+        switch (name.toLowerCase()) {
+            case "bulbasaur":
                 return new Pokemon("Bulbasaur", 45, Type.GRASS, new Move[] {
                     new Move("Tackle", Type.NORMAL, 40, (byte) 100, (byte) 35, MoveType.PHYSICAL),
                     new Move("Vine Whip", Type.GRASS, 45, (byte) 100, (byte) 25, MoveType.PHYSICAL),
@@ -35,7 +42,7 @@ public class PokemonFactory {
                     new Move("Leech Seed", Type.GRASS, 0, (byte) 90, (byte) 10, MoveType.STATUS)
                 });
 
-            case "Charmander":
+            case "charmander":
                 return new Pokemon("Charmander", 39, Type.FIRE, new Move[] {
                     new Move("Scratch", Type.NORMAL, 40, (byte) 100, (byte) 35, MoveType.PHYSICAL),
                     new Move("Ember", Type.FIRE, 40, (byte) 100, (byte) 25, MoveType.SPECIAL),
@@ -43,7 +50,7 @@ public class PokemonFactory {
                     new Move("Smokescreen", Type.NORMAL, 0, (byte) 100, (byte) 20, MoveType.STATUS)
                 });
 
-            case "Squirtle":
+            case "squirtle":
                 return new Pokemon("Squirtle", 44, Type.WATER, new Move[] {
                     new Move("Tackle", Type.NORMAL, 40, (byte) 100, (byte) 35, MoveType.PHYSICAL),
                     new Move("Water Gun", Type.WATER, 40, (byte) 100, (byte) 25, MoveType.SPECIAL),
@@ -51,7 +58,7 @@ public class PokemonFactory {
                     new Move("Bubble", Type.WATER, 40, (byte) 100, (byte) 30, MoveType.SPECIAL)
                 });
 
-            case "Pikachu":
+            case "pikachu":
                 return new Pokemon("Pikachu", 35, Type.ELECTRIC, new Move[] {
                     new Move("Quick Attack", Type.NORMAL, 40, (byte) 100, (byte) 30, MoveType.PHYSICAL),
                     new Move("Thunder Shock", Type.ELECTRIC, 40, (byte) 100, (byte) 30, MoveType.SPECIAL),
