@@ -1,4 +1,5 @@
 package Player;
+import Pokemon.Pokemon;
 import java.util.ArrayList;
 
 public class Player {
@@ -8,7 +9,7 @@ public class Player {
     private int draws;
     private int totalGames;
     private int score;
-    private ArrayList<String> pokemon_list;
+    private ArrayList<Pokemon> pokemon_list;
 
     public Player(String username) {
         this.username = username;
@@ -17,7 +18,7 @@ public class Player {
         this.draws = 0;
         this.totalGames = 0;
         this.score = 0;
-        this.pokemon_list = new ArrayList<String>();
+        this.pokemon_list = new ArrayList<Pokemon>();
     }
 
     public String getUsername() {
@@ -44,7 +45,7 @@ public class Player {
         return score;
     }
 
-    public ArrayList<String> getPokemonList() {
+    public ArrayList<Pokemon> getPokemonList() {
         return pokemon_list;
     }
 
@@ -72,12 +73,11 @@ public class Player {
         this.score = score;
     }
 
-    public void addPokemon(String pokemon) {
-        String formattedPokemon = pokemon.substring(0, 1).toUpperCase() + pokemon.substring(1).toLowerCase();
-        pokemon_list.add(formattedPokemon);
+    public void addPokemon(Pokemon pokemon) {
+        pokemon_list.add(pokemon);
     }
 
-    public void removePokemon(String pokemon) {
+    public void removePokemon(Pokemon pokemon) {
         pokemon_list.remove(pokemon);
     }
 

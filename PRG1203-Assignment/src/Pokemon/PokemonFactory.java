@@ -1,6 +1,5 @@
 package Pokemon;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class PokemonFactory {
@@ -11,24 +10,6 @@ public class PokemonFactory {
             "Squirtle",
             "Pikachu"
         };
-    }
-
-    public static String getRandomPokemon() {
-        String[] allPokemon = getAllPokemon();
-        int randomIndex = (int) (Math.random() * allPokemon.length);
-        return allPokemon[randomIndex];
-    }
-
-    public static String[] randomizePokemon() {
-        String[] allPokemon = getAllPokemon();
-        List<String> allPokemonList = new ArrayList<>(Arrays.asList(allPokemon));
-        allPokemonList.addAll(Arrays.asList(allPokemon));
-        String[] randomPokemon = new String[3];
-        for (int i = 0; i < 3; i++) {
-            int randomIndex = (int) (Math.random() * allPokemonList.size());
-            randomPokemon[i] = allPokemonList.remove(randomIndex);
-        }
-        return randomPokemon;
     }
 
     public static Pokemon createPokemon(String name) {
@@ -69,5 +50,15 @@ public class PokemonFactory {
             default:
                 throw new IllegalArgumentException("Unknown Pokemon: " + name);
         }
+    }
+
+    public static String[] getRandomPokemonList(int count) {
+        String[] allPokemon = getAllPokemon();
+        List<String> randomPokemonList = new ArrayList<>();
+        for (int i = 0; i < count; i++) {
+            int randomIndex = (int) (Math.random() * allPokemon.length);
+            randomPokemonList.add(allPokemon[randomIndex]);
+        }
+        return randomPokemonList.toArray(new String[0]);
     }
 }
