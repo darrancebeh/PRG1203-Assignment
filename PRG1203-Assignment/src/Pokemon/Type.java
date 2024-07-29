@@ -93,19 +93,19 @@ public enum Type {
 
     public int getEffectivenessAgainst(String type) {
         for (String t : superEffective) {
-            if (t.equals(type)) {
+            if (t.equalsIgnoreCase(type)) {
                 return 1;
             }
         }
     
         for (String t : notVeryEffective) {
-            if (t.equals(type)) {
+            if (t.equalsIgnoreCase(type)) {
                 return -1;
             }
         }
     
         for (String t : noEffect) {
-            if (t.equals(type)) {
+            if (t.equalsIgnoreCase(type)) {
                 return -2;
             }
         }

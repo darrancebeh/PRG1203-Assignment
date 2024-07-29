@@ -50,4 +50,30 @@ public class Move {
     public String effectivenessToString(int effectiveness) {
         return type.effectivenessToString(effectiveness);
     }
+
+    public int calculateDamage(Move move, Pokemon opponent) {
+        int damage = move.getPower();
+        int effectiveness = move.getEffectivenessAgainst(opponent.getType().name());
+        if (effectiveness == 1) {
+            damage *= 2;
+        } else if (effectiveness == -1) {
+            damage /= 2;
+        } else if (effectiveness == -2) {
+            damage *= 0;
+        } else {
+            damage *= 1;
+        }
+
+        return damage;
+    }
+
+    public void decideMoveType(Move move, Pokemon actor, Pokemon target) {
+        if (move.getMoveType() == MoveType.PHYSICAL) {
+            actor.attack(move, target);
+        } else if (move.getMoveType() == MoveType.SPECIAL) {
+            actor.attack(move, target);
+        } else if (move.getMoveType() == MoveType.STATUS) {
+            actor.statusIncreasePp(move, actor);
+        }
+    }
 }
