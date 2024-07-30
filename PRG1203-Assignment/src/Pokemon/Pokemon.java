@@ -1,6 +1,6 @@
 package Pokemon;
 
-public class Pokemon {
+public abstract class Pokemon {
     private final String name;
     private int health;
     private int maxHealth;
@@ -98,4 +98,7 @@ public class Pokemon {
         String status = (pokemon.getHealth() == 0) ? "Fainted" : "Active";
         System.out.println("Status: " + status);
     }
+
+    public abstract Pokemon evolve();
+    public abstract boolean canEvolve();
 }

@@ -10,13 +10,17 @@ import Pokemon.Pokemon;
 import Pokemon.PokemonFactory;
 
 public class GaOle {
-    public void newGame(Player player) {
+    public static void newGame(Player player) {
         System.out.print("\033[H\033[2J"); 
         Player opponent = new Player("Opponent");
         System.out.println("Starting a new game...");
 
         ArrayList<String> featuredPokemonList = new ArrayList<>();
         featuredPokemonList = gameStartSetup(player);
+
+        if(featuredPokemonList == null) {
+            return;
+        }
 
         Scanner scanner = new Scanner(System.in);
         System.out.println("Enter any key to proceed to generating scenario.");
@@ -33,7 +37,7 @@ public class GaOle {
         scanner.nextLine();
     }
 
-    public ArrayList<String> gameStartSetup(Player player) {
+    public static ArrayList<String> gameStartSetup(Player player) {
         System.out.print("\033[H\033[2J"); 
         System.out.println("These random pokemon are more likely to appear in this game: \n");
         ArrayList<String> randomPokemonList = new ArrayList<>();
@@ -55,7 +59,7 @@ public class GaOle {
             System.out.println("Starting game...");
         } else {
             System.out.println("Exiting...");
-            optionMenu(player);
+            return null;
         }
 
         System.out.print("\033[H\033[2J"); 
@@ -88,7 +92,7 @@ public class GaOle {
         return randomPokemonList;
     }
 
-    public ArrayList<Pokemon> gameGenerateScenario(Player player, Player opponent, ArrayList<String> featuredPokemonList) {
+    public static ArrayList<Pokemon> gameGenerateScenario(Player player, Player opponent, ArrayList<String> featuredPokemonList) {
         System.out.print("\033[H\033[2J"); 
         List<String> randomPokemonList = new ArrayList<>();
         ArrayList<Pokemon> pokemonsToBattle = new ArrayList<>();
@@ -179,7 +183,7 @@ public class GaOle {
 
     }
 
-    public void gameBattle(Player player, Player opponent, ArrayList<Pokemon> pokemonsToBattle) {
+    public static void gameBattle(Player player, Player opponent, ArrayList<Pokemon> pokemonsToBattle) {
         boolean legendaryBattle = false;
         System.out.print("\033[H\033[2J"); 
         System.out.println("Battle started!");
@@ -472,7 +476,7 @@ public class GaOle {
 
     }
 
-    public List<String> choosePokemonFromList(String[] pokemonNameList, int numberOfPokemon) {
+    public static List<String> choosePokemonFromList(String[] pokemonNameList, int numberOfPokemon) {
         Scanner scanner = new Scanner(System.in);
         List<String> chosenPokemonList = new ArrayList<>();
 
@@ -518,34 +522,5 @@ public class GaOle {
         }
 
         return chosenPokemonList;
-    }
-
-    public void optionMenu(Player player) {
-        System.out.println("Please enter your desired action: ");
-        System.out.println("1. Start a new game");
-        System.out.println("2. View your profile");
-        System.out.println("3. Change your username");  
-        System.out.println("0. Exit");
-
-        Scanner scanner = new Scanner(System.in);
-        int action = scanner.nextInt();
-
-        switch (action) {
-            case 1:
-                newGame(player);
-                break;
-            case 2:
-                System.out.println("Viewing your profile...");
-                break;
-            case 3:
-                System.out.println("Meeting the Team...");
-                break;
-            case 0:
-                System.out.println("Exiting...");
-                break;
-            default:
-                System.out.println("Invalid action. Exiting...");
-                break;
-        }
     }
 }
