@@ -48,7 +48,20 @@ public abstract class Pokemon {
     }
 
     public void setHealth(int health) {
+        // health cannot be less than 0
+
+        if (health < 0) {
+            health = 0;
+        }
+
+        // health cannot exceed max health
+
+        if (health > this.maxHealth) {
+            health = this.maxHealth;
+        }
+
         this.health = health;
+
     }
 
     public void setMaxHealth(int maxHealth) {

@@ -2,7 +2,6 @@ package Utility;
 import Player.Player;
 import Pokemon.Pokemon;
 import java.util.Scanner;
-import Pokedex.*;
 
 import java.util.ArrayList;
 
@@ -108,24 +107,32 @@ public class Clinic {
         Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
-        while(choice < 0 || choice > 2) {
-            System.out.println("Invalid choice. Please select a valid option.");
+        while(choice != 0 ){
+            while(choice < 0 || choice > 3) {
+                System.out.println("Invalid choice. Please select a valid option.");
+                choice = scanner.nextInt();
+            }
+            
+            switch(choice) {
+                case 1:
+                    displayPokemonListHealth(player);
+                    break;
+                case 2:
+                    payToHeal(player);
+                    break;
+                case 3:
+                    payToEvolve(player);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please select a valid option.");
+                    break;
+            }
+            System.out.println("Please select an option:");
+            System.out.println("1. Display Pokemon List and Health");
+            System.out.println("2. Heal All Pokemon (50 Coins)");
+            System.out.println("3. Evolve Pokemon (450 Coins)");
+            System.out.println("0. Exit");
             choice = scanner.nextInt();
-        }
-
-        switch (choice) {
-            case 1:
-                displayPokemonListHealth(player);
-                break;
-            case 2:
-                healPokemon(player);
-                break;
-            case 3:
-                payToEvolve(player);
-                break;
-            case 0:
-                System.out.println("Exiting...");
-                break;
         }
     }
 }

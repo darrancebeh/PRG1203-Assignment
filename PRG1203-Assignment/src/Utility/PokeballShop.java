@@ -79,6 +79,9 @@ public class PokeballShop {
             }
         } else {
             System.out.println("Thank you for visiting the Pokeball Shop!");
+            System.out.println("Returning to main menu...");
+
+            scanner.nextLine();
         }
     }
 }

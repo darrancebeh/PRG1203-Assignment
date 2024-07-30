@@ -2,6 +2,7 @@ package Main;
 
 import Player.Player;
 import Utility.PokeballShop;
+import Utility.Clinic;
 
 
 import java.util.Scanner;
@@ -59,7 +60,7 @@ public class Main {
                 PokeballShop.visitShop(player);
             case 3:
                 System.out.println("Visiting the Poke-Clinic...");
-                break;
+                Clinic.visitClinic(player);
             case 4:
                 System.out.println("Viewing your inventory...");
                 break;
