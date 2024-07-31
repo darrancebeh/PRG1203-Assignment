@@ -88,18 +88,6 @@ public class Player {
         return null;
     }
 
-    public void addPokeball(Pokeball pokeball) {
-        pokeballList.add(pokeball);
-    }
-
-    public void removePokeball(String pokeballName) {
-        for (Pokeball pokeball : pokeballList) {
-            if (pokeball.getName().equalsIgnoreCase(pokeballName)) {
-                pokeballList.remove(pokeball);
-            }
-        }
-    }
-
     public ArrayList<Pokeball> getPokeballList() {
         return pokeballList;
     }
@@ -108,6 +96,7 @@ public class Player {
         int pokeballQuantity = 0;
         int greatBallQuantity = 0;
         int ultraBallQuantity = 0;
+        int masterBallQuantity = 0;
 
         for (Pokeball pokeball : pokeballList) {
             if (pokeball.getName().equalsIgnoreCase("Pokeball")) {
@@ -116,10 +105,12 @@ public class Player {
                 greatBallQuantity++;
             } else if (pokeball.getName().equalsIgnoreCase("Ultra Ball")) {
                 ultraBallQuantity++;
+            } else if (pokeball.getName().equalsIgnoreCase("Master Ball")) {
+                masterBallQuantity++;
             }
         }
 
-        return "Pokeball: " + pokeballQuantity + "\nGreat Ball: " + greatBallQuantity + "\nUltra Ball: " + ultraBallQuantity;
+        return "Pokeball: " + pokeballQuantity + "\nGreat Ball: " + greatBallQuantity + "\nUltra Ball: " + ultraBallQuantity + "\nMaster Ball: " + masterBallQuantity;
     }
 
     public void attemptCapturePokemon(Pokemon pokemon, Pokeball pokeball) {
@@ -135,6 +126,22 @@ public class Player {
         // remove pokeball from player's inventory after attempt
 
         removePokeball(pokeball.getName());
+        
+        // add captured pokemon to player's pokemon list
+        addPokemon(pokemon);
+    }
+
+    public void addPokeball(Pokeball pokeball) {
+        pokeballList.add(pokeball);
+    }
+
+    public void removePokeball(String pokeballName) {
+        for (Pokeball pokeball : pokeballList) {
+            if (pokeball.getName().equalsIgnoreCase(pokeballName)) {
+                pokeballList.remove(pokeball);
+                break;
+            }
+        }
     }
 
     // get pokemon list in string list

@@ -85,6 +85,10 @@ public abstract class Pokemon {
         // decrease pp after use
 
         this.setPp(this.getPp() - move.getPp());
+
+        // display damage dealt
+
+        System.out.println(opponent.getName() + " has taken " + damage + " damage!");
     }
 
     public void statusIncreasePp(Move move, Pokemon actor) {

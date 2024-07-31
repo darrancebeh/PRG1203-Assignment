@@ -364,8 +364,8 @@ public class GaOle {
             System.out.println("You have no more Pokemon left! You have lost the battle!");
             player.setLosses(player.getLosses() + 1);
 
-            System.out.println("You have gained 50 coins for your participation!");
-            player.setCoins(player.getCoins() + 50);
+            System.out.println("You have gained 300 coins for your participation!");
+            player.setCoins(player.getCoins() + 300);
 
             System.out.println("Returning to main menu...");
 
@@ -375,8 +375,8 @@ public class GaOle {
             System.out.println("You have defeated all of the opponent's Pokemon! You have won the battle!");
             player.setWins(player.getWins() + 1);
 
-            System.out.println("You have gained 300 coins for your victory!");
-            player.setCoins(player.getCoins() + 300);
+            System.out.println("You have gained 600 coins for your victory!");
+            player.setCoins(player.getCoins() + 600);
 
             System.out.println("You are given the chance to capture the defeated Pokemon(s)!");
             
@@ -450,6 +450,7 @@ public class GaOle {
 
                     System.out.println("Would you like to use your Pokeball(s) to capture ONE of the defeated Pokemon? [Y/N]");
 
+                    Scanner scanner = new Scanner(System.in);
                     String usePokeball = scanner.nextLine();
 
                     if(usePokeball.equalsIgnoreCase("Y")) {
@@ -488,6 +489,7 @@ public class GaOle {
                         }
 
                         player.attemptCapturePokemon(PokemonFactory.createPokemon(pokemonToCapture), player.getPokeball(pokeballToUse));
+                        scanner.nextLine();
 
                     } else {
                         System.out.println("You have chosen not to capture the defeated Pokemon(s).");
@@ -499,6 +501,7 @@ public class GaOle {
         }
 
         System.out.println("\nBattle concluded!");
+        System.out.println("Your Game Score: " + gameScore);
         System.out.println("Returning to main menu...");
 
         return gameScore;

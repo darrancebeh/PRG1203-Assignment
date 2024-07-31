@@ -17,7 +17,9 @@ public class Clinic {
 
     public void displayPokemonListHealth(Player player) {
 
-        if(player.getPokemonList().isEmpty()) {
+        // if player pokemon list is null, return
+
+        if(player.getPokemonList() == null) {
             System.out.println("You have no Pokemon in your list.");
             return;
         }
