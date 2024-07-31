@@ -406,6 +406,7 @@ public class GaOle {
 
                     if(hasUltraBall || hasMasterBall) {
                         System.out.println("Would you like to use an Ultra Ball or Master Ball to capture the legendary Pokemon? [Y/N]");
+                        Scanner scanner = new Scanner(System.in);
                         String usePokeball = scanner.nextLine();
 
                         if(hasUltraBall && usePokeball.equalsIgnoreCase("Y")) {
@@ -503,7 +504,10 @@ public class GaOle {
         System.out.println("\nBattle concluded!");
         System.out.println("Your Game Score: " + gameScore);
         System.out.println("Returning to main menu...");
+        Scanner scanner = new Scanner(System.in);
+        scanner.nextLine();
 
+        player.addGameScore(gameScore);
         return gameScore;
 
     }

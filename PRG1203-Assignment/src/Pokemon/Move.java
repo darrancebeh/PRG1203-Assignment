@@ -4,6 +4,10 @@ public class Move {
     private final String name;
     private final Type type;
     private final int power;
+
+    // accuracy not implemented in the battle system to reduce complications
+    // but the option is there for future development
+    
     private final byte accuracy;
     private final byte pp;
     private final MoveType moveType;
@@ -42,7 +46,6 @@ public class Move {
         return moveType;
     }
 
-    // Example of a method that could be added
     public int getEffectivenessAgainst(String defendingType) {
         return type.getEffectivenessAgainst(defendingType);
     }

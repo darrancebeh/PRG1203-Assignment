@@ -51,8 +51,13 @@ public class PokeballShop {
             }
             buyer.setCoins(buyer.getCoins() - pokeballs.get(choice - 1).getPrice());
             Pokeball selectedPokeball = pokeballs.get(choice - 1);
-            System.out.println("You have purchased a " + selectedPokeball.getName() + " for $" + selectedPokeball.getPrice());
+            System.out.println("You have purchased a " + selectedPokeball.getName() + " for " + selectedPokeball.getPrice() + " Coins.");
             buyer.addPokeball(selectedPokeball);
+
+            Scanner scanner = new Scanner(System.in);
+            System.out.println("Returning to options menu...");
+            scanner.nextLine();
+
         } else {
             System.out.println("Invalid choice. Please select a valid option.");
         }

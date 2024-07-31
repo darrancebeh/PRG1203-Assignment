@@ -10,7 +10,6 @@ public class Player {
     private int losses;
     private int draws;
     private int totalGames;
-    private int score;
     private int coins;
     private ArrayList<Pokeball> pokeballList;
     private ArrayList<Pokemon> pokemonList;
@@ -24,7 +23,6 @@ public class Player {
         this.losses = 0;
         this.draws = 0;
         this.totalGames = 0;
-        this.score = 0;
         this.coins = 0;
         this.pokeballList = new ArrayList<Pokeball>();
         this.pokemonList = new ArrayList<Pokemon>();
@@ -51,10 +49,6 @@ public class Player {
         // total games = wins + losses + draws
 
         return wins + losses + draws;
-    }
-
-    public int getScore() {
-        return score;
     }
 
     public int getCoins() {
@@ -183,9 +177,6 @@ public class Player {
         this.totalGames = totalGames;
     }
 
-    public void setScore(int score) {
-        this.score = score;
-    }
 
     public void setCoins(int coins) {
         this.coins = coins;
@@ -208,7 +199,6 @@ public class Player {
         System.out.println("Losses: " + losses);
         System.out.println("Draws: " + draws);
         System.out.println("Total Games: " + totalGames);
-        System.out.println("Score: " + score);
         System.out.println("Coins: " + coins);
 
         System.out.println("\nPokemon List:");

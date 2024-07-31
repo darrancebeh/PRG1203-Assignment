@@ -4,8 +4,6 @@ import Player.Player;
 import Utility.PokeballShop;
 import Utility.Clinic;
 
-
-
 import java.util.Scanner;
 
 public class Main {

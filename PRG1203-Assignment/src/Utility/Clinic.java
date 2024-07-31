@@ -7,8 +7,8 @@ import java.util.ArrayList;
 
 public class Clinic {
     private Scanner scanner;
-    private final int HEAL_COST = 50;
-    private final int EVOLVE_COST = 450;
+    private final int healCost = 50;
+    private final int evolveCost = 450;
     // displays the player's pokemon list along with their health
 
     public Clinic() {
@@ -39,7 +39,7 @@ public class Clinic {
     }
 
     public void payToHeal(Player player) {
-        if(player.getCoins() < HEAL_COST) {
+        if(player.getCoins() < healCost) {
             System.out.println("You do not have enough coins to heal all Pokemon.");
             return;
         }
@@ -49,7 +49,7 @@ public class Clinic {
     }
 
     public void payToEvolve(Player player) {
-        if(player.getCoins() < EVOLVE_COST) {
+        if(player.getCoins() < evolveCost) {
             System.out.println("You do not have enough coins to evolve a Pokemon.");
             return;
         }
