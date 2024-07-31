@@ -16,8 +16,8 @@ public class Arceus extends Pokemon {
             Type.NORMAL,
             new Move[] {
                 new Move("Hyper Beam", Type.NORMAL, 70, (byte) 100, (byte) 35, MoveType.SPECIAL),
-                new Move("Judgement", Type.NORMAL, 80, (byte) 100, (byte) 40, MoveType.SPECIAL),
-                new Move("Extreme Speed", Type.NORMAL, 90, (byte) 95, (byte) 30, MoveType.PHYSICAL),
+                new Move("Judgement", Type.NORMAL, 90, (byte) 100, (byte) 40, MoveType.SPECIAL),
+                new Move("Extreme Speed", Type.NORMAL, 80, (byte) 95, (byte) 30, MoveType.PHYSICAL),
                 new Move("Recover", Type.NORMAL, 60, (byte) 100, (byte) 0, MoveType.STATUS)
             }
         );

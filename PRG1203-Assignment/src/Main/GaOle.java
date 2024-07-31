@@ -10,6 +10,12 @@ import Pokemon.Pokemon;
 import Pokemon.PokemonFactory;
 
 public class GaOle {
+    private static Scanner scanner;
+
+    static {
+        scanner = new Scanner(System.in);
+    }
+
     public static void newGame(Player player) {
         System.out.print("\033[H\033[2J"); 
         Player opponent = new Player("Opponent");
@@ -22,7 +28,7 @@ public class GaOle {
             return;
         }
 
-        Scanner scanner = new Scanner(System.in);
+        
         System.out.println("Enter any key to proceed to generating scenario.");
         scanner.nextLine();
 
@@ -52,7 +58,7 @@ public class GaOle {
         }
 
         System.out.println("\nProceed to start game? [Y/N]");
-        Scanner scanner = new Scanner(System.in);
+        
         String proceed = scanner.nextLine();
 
         if (proceed.equalsIgnoreCase("Y")) {
@@ -139,7 +145,7 @@ public class GaOle {
         }
 
         if(!legendaryPokemonAppeared) {
-            System.out.println("The following Pokemon have appeared: ");
+            System.out.println("The following Pokemon have appeared:\n");
             for (String pokemon : randomPokemonAppearance) {
                 System.out.println(PokemonFactory.getPokemonStats(pokemon));
                 System.out.println("----------------------------------------");
@@ -156,6 +162,7 @@ public class GaOle {
         ArrayList<Pokemon> playerPokemonList = player.getPokemonList();
 
         List<Pokemon> playerChosenPokemonList = new ArrayList<>();
+        System.out.print("\nYour ");
         playerChosenPokemonList = choosePokemonFromListPokemon(playerPokemonList, 2);
 
         for(Pokemon chosenPokemon : playerChosenPokemonList) {
@@ -183,7 +190,8 @@ public class GaOle {
 
     }
 
-    public static void gameBattle(Player player, Player opponent, ArrayList<Pokemon> pokemonsToBattle) {
+    public static int gameBattle(Player player, Player opponent, ArrayList<Pokemon> pokemonsToBattle) {
+        int gameScore = 99999;
         boolean legendaryBattle = false;
         System.out.print("\033[H\033[2J"); 
         System.out.println("Battle started!");
@@ -228,7 +236,7 @@ public class GaOle {
         System.out.println("2. " + playerPokemon2.getName() + " (" + playerPokemon2.getType() + ")" + " (HP: " + playerPokemon2.getHealth() + "/" + playerPokemon2.getMaxHealth() + ")");
         System.out.println("\nEnter 1 or 2: ");
 
-        Scanner scanner = new Scanner(System.in);
+        
 
         int playerPokemonChoice = scanner.nextInt();
 
@@ -249,6 +257,8 @@ public class GaOle {
         
         while ((playerPokemon1.getHealth() > 0 || playerPokemon2.getHealth() > 0) && (opponentPokemon1.getHealth() > 0 || (opponentPokemon2 != null && opponentPokemon2.getHealth() > 0))) {
             if (playerTurn) {
+                // the more turns the player takes, the lower the score because it indicates a tougher battle
+                gameScore -= 5000;
                 // Player's turn
                 if (playerPokemon.getHealth() <= 0) {
                     System.out.println("\n" + player.getUsername() + "'s " + playerPokemon.getName() + " fainted!\n");
@@ -349,6 +359,8 @@ public class GaOle {
         }
 
         if(playerPokemon1.getHealth() <= 0 && playerPokemon2.getHealth() <= 0) {
+            // get a 0 score for losing the battle
+            gameScore = 0;
             System.out.println("You have no more Pokemon left! You have lost the battle!");
             player.setLosses(player.getLosses() + 1);
 
@@ -358,6 +370,8 @@ public class GaOle {
             System.out.println("Returning to main menu...");
 
         } else if(opponentPokemon1.getHealth() <= 0 && (opponentPokemon2 == null || opponentPokemon2.getHealth() <= 0)) {
+            // get score for winning the battle
+            gameScore += 4999;
             System.out.println("You have defeated all of the opponent's Pokemon! You have won the battle!");
             player.setWins(player.getWins() + 1);
 
@@ -373,6 +387,8 @@ public class GaOle {
                 System.out.println(player.getPokeballListString());
 
                 if(legendaryBattle) {
+                    // get higher game score for defeating a legendary pokemon
+                    gameScore += 4999;
                     System.out.println("You have defeated the LEGENDARY " + opponentPokemon1.getName() + "! You will need at least an Ultra Ball or Master Ball to capture it!");
 
                     // check if the user has an ultra ball or master ball
@@ -485,6 +501,8 @@ public class GaOle {
         System.out.println("\nBattle concluded!");
         System.out.println("Returning to main menu...");
 
+        return gameScore;
+
     }
 
     public static List<Pokemon> choosePokemonFromListPokemon(ArrayList<Pokemon> playerPokemonList, int numberOfPokemon) {
@@ -514,7 +532,6 @@ public class GaOle {
 
             // instead of entering pokemon name, enter the number of the pokemon in the list
 
-            Scanner scanner = new Scanner(System.in);
             int chosenPokemonIndex = scanner.nextInt();
 
             // data validation
@@ -543,7 +560,6 @@ public class GaOle {
     }
 
     public static List<String> choosePokemonFromListString(String[] pokemonNameList, int numberOfPokemon) {
-        Scanner scanner = new Scanner(System.in);
         List<String> chosenPokemonList = new ArrayList<>();
 
 
@@ -555,6 +571,14 @@ public class GaOle {
             int pokemonIndex = 1;
             for (String pokemon : pokemonNameList) {
 
+                if(pokemon == "") {
+                    System.out.print(pokemonIndex + ". ");
+                    System.out.println("This Pokemon has already been chosen.");
+                    System.out.println("----------------------------------------");
+                    pokemonIndex++;
+                    continue;
+                }
+
                 // associate every pokemon with an index number
                 // print the pokemon index in the list
                 System.out.print(pokemonIndex + ". ");
@@ -563,7 +587,7 @@ public class GaOle {
                 pokemonIndex++;
             }
 
-            System.out.println("\nEnter PRECISELY, the ASSOCIATED INDEX of the Pokemon you want to choose: ");
+            System.out.println("\nEnter PRECISELY, the ASSOCIATED NUMBER of the Pokemon you want to choose: ");
 
             // instead of entering pokemon name, enter the number of the pokemon in the list
 
@@ -578,26 +602,12 @@ public class GaOle {
 
             String chosenPokemonName = pokemonNameList[chosenPokemonIndex - 1];
 
-            boolean isValidPokemon = false;
-            for (String pokemon : pokemonNameList) {
-                if (pokemon.equalsIgnoreCase(chosenPokemonName) && chosenPokemonName != "") {
-                    isValidPokemon = true;
-                    break;
-                }
-            }
-
-            if (!isValidPokemon) {
-                System.out.println("Invalid pokemon. Please choose from the list and enter the pokemon name PRECISELY.");
-                continue;
-            }
-
             chosenPokemonList.add(chosenPokemonName);
             System.out.print("\033[H\033[2J"); 
 
             //make the first letter of the pokemon name uppercase and the rest lowercase
             System.out.println("You have chosen: " + chosenPokemonName.substring(0, 1).toUpperCase() + chosenPokemonName.substring(1).toLowerCase() + "\n\n");
             
-
             // remove chosen pokemon from list
 
             for (int i = 0; i < pokemonNameList.length; i++) {

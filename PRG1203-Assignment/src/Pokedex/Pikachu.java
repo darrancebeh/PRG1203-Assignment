@@ -16,8 +16,8 @@ public class Pikachu extends Pokemon {
             Type.ELECTRIC,
             new Move[] {
                 new Move("Quick Attack", Type.NORMAL, 20, (byte) 100, (byte) 10, MoveType.PHYSICAL),
-                new Move("Thunder Shock", Type.ELECTRIC, 45, (byte) 100, (byte) 25, MoveType.SPECIAL),
-                new Move("Thunderbolt", Type.ELECTRIC, 55, (byte) 95, (byte) 15, MoveType.SPECIAL),
+                new Move("Thunder Shock", Type.ELECTRIC, 55, (byte) 100, (byte) 25, MoveType.SPECIAL),
+                new Move("Thunderbolt", Type.ELECTRIC, 45, (byte) 95, (byte) 15, MoveType.SPECIAL),
                 new Move("Thunder Wave", Type.ELECTRIC, 50, (byte) 100, (byte) 0, MoveType.STATUS)
             }
         );

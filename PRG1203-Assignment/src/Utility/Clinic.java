@@ -6,9 +6,16 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Clinic {
+    private Scanner scanner;
+    private final int HEAL_COST = 50;
+    private final int EVOLVE_COST = 450;
     // displays the player's pokemon list along with their health
 
-    public static void displayPokemonListHealth(Player player) {
+    public Clinic() {
+        this.scanner = new Scanner(System.in);
+    }
+
+    public void displayPokemonListHealth(Player player) {
 
         if(player.getPokemonList().isEmpty()) {
             System.out.println("You have no Pokemon in your list.");
@@ -22,15 +29,15 @@ public class Clinic {
     }
 
     // heals all of the player's pokemon
-    public static void healPokemon(Player player) {
+    public void healPokemon(Player player) {
         for (Pokemon pokemon : player.getPokemonList()) {
             pokemon.setHealth(pokemon.getMaxHealth());
         }
         System.out.println("All Pokemon have been healed.");
     }
 
-    public static void payToHeal(Player player) {
-        if(player.getCoins() < 50) {
+    public void payToHeal(Player player) {
+        if(player.getCoins() < HEAL_COST) {
             System.out.println("You do not have enough coins to heal all Pokemon.");
             return;
         }
@@ -39,8 +46,8 @@ public class Clinic {
         System.out.println("You have healed all Pokemon for 50 coins.");
     }
 
-    public static void payToEvolve(Player player) {
-        if(player.getCoins() < 450) {
+    public void payToEvolve(Player player) {
+        if(player.getCoins() < EVOLVE_COST) {
             System.out.println("You do not have enough coins to evolve a Pokemon.");
             return;
         }
@@ -64,7 +71,6 @@ public class Clinic {
             System.out.println((i + 1) + ". " + evolvablePokemon.get(i).getName());
         }
 
-        Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
         while(choice < 1 || choice > evolvablePokemon.size()) {
@@ -95,16 +101,22 @@ public class Clinic {
     }
 
     // displays the clinic menu
-    public static void visitClinic(Player player) {
+    public void visitClinic(Player player) {
         System.out.print("\033[H\033[2J"); 
         System.out.println("Welcome to the Poke-Clinic!");
         System.out.println("Please select an option:");
         System.out.println("1. Display Pokemon List and Health");
         System.out.println("2. Heal All Pokemon (50 Coins)");
         System.out.println("3. Evolve Pokemon (450 Coins)");
-        System.out.println("0. Exit");
+        System.out.println("0. Exit\n");
 
-        Scanner scanner = new Scanner(System.in);
+        if(player.getCoins() < 50) {
+            System.out.println("You do not have enough coins to perform any actions.");
+            System.out.println("Returning to main menu...");
+            scanner.nextLine();
+            return;
+        }
+
         int choice = scanner.nextInt();
 
         while(choice != 0 ){
@@ -112,7 +124,7 @@ public class Clinic {
                 System.out.println("Invalid choice. Please select a valid option.");
                 choice = scanner.nextInt();
             }
-            
+
             switch(choice) {
                 case 1:
                     displayPokemonListHealth(player);

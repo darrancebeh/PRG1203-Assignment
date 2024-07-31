@@ -16,8 +16,8 @@ public class Geodude extends Pokemon {
             Type.ROCK,
             new Move[] {
                 new Move("Tackle", Type.NORMAL, 20, (byte) 100, (byte) 10, MoveType.PHYSICAL),
-                new Move("Rock Throw", Type.ROCK, 45, (byte) 100, (byte) 25, MoveType.SPECIAL),
-                new Move("Rock Slide", Type.ROCK, 55, (byte) 95, (byte) 15, MoveType.SPECIAL),
+                new Move("Rock Throw", Type.ROCK, 55, (byte) 100, (byte) 25, MoveType.SPECIAL),
+                new Move("Rock Slide", Type.ROCK, 45, (byte) 95, (byte) 15, MoveType.SPECIAL),
                 new Move("Rock Polish", Type.ROCK, 50, (byte) 100, (byte) 0, MoveType.STATUS)
             }
         );

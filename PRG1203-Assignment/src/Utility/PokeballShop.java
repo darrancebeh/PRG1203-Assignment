@@ -7,9 +7,11 @@ import java.util.Scanner;
 
 public class PokeballShop {
     private List<Pokeball> pokeballs;
+    private Scanner scanner;
 
     public PokeballShop() {
         pokeballs = new ArrayList<>();
+        this.scanner = new Scanner(System.in);
         pokeballs.add(Pokeball.createPokeball("Pokeball"));
         pokeballs.add(Pokeball.createPokeball("Great Ball"));
         pokeballs.add(Pokeball.createPokeball("Ultra Ball"));
@@ -31,7 +33,6 @@ public class PokeballShop {
         System.out.println("You have " + player.getCoins() + " Coins.");
         System.out.println("Please select a pokeball to purchase (1-4) (10 to exit): ");
         
-        Scanner scanner = new Scanner(System.in);
         int choice = scanner.nextInt();
 
         while(choice < 1 || choice > 4 && choice != 10) {
@@ -57,14 +58,20 @@ public class PokeballShop {
         }
     }
 
-    public static void visitShop(Player player){
+    public void visitShop(Player player){
         PokeballShop pokeballShop = new PokeballShop();
         pokeballShop.displayPokeballShop();
 
-        System.out.println("You have " + player.getCoins() + " Coins.");
+        System.out.println("\nYou have " + player.getCoins() + " Coins.");
+
+        if(player.getCoins() < 200) {
+            System.out.println("You do not have enough coins to purchase a Pokeball.");
+            System.out.println("Returning to main menu...");
+            scanner.nextLine();
+            return;
+        }
 
         System.out.println("Would you like to make a purchase [Y/N/]?");
-        Scanner scanner = new Scanner(System.in);
         String choice = scanner.nextLine();
 
         while(!choice.equalsIgnoreCase("Y") && !choice.equalsIgnoreCase("N")) {

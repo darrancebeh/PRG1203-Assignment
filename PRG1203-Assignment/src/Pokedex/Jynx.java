@@ -16,8 +16,8 @@ public class Jynx extends Pokemon {
             Type.ICE,
             new Move[] {
                 new Move("Pound", Type.NORMAL, 20, (byte) 100, (byte) 10, MoveType.PHYSICAL),
-                new Move("Ice Punch", Type.ICE, 45, (byte) 100, (byte) 25, MoveType.SPECIAL),
-                new Move("Blizzard", Type.ICE, 55, (byte) 95, (byte) 15, MoveType.SPECIAL),
+                new Move("Ice Punch", Type.ICE, 55, (byte) 100, (byte) 25, MoveType.SPECIAL),
+                new Move("Blizzard", Type.ICE, 45, (byte) 95, (byte) 15, MoveType.SPECIAL),
                 new Move("Hail", Type.ICE, 50, (byte) 100, (byte) 0, MoveType.STATUS)
             }
         );

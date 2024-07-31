@@ -14,6 +14,9 @@ public class Player {
     private int coins;
     private ArrayList<Pokeball> pokeballList;
     private ArrayList<Pokemon> pokemonList;
+    
+    //list to score player game scores
+    private ArrayList<Integer> gameScores;
 
     public Player(String username) {
         this.username = username;
@@ -25,6 +28,7 @@ public class Player {
         this.coins = 0;
         this.pokeballList = new ArrayList<Pokeball>();
         this.pokemonList = new ArrayList<Pokemon>();
+        this.gameScores = new ArrayList<Integer>();
     }
 
     public String getUsername() {
@@ -55,6 +59,20 @@ public class Player {
 
     public int getCoins() {
         return coins;
+    }
+
+    public void addGameScore(int gameScore) {
+        gameScores.add(gameScore);
+    }
+
+    public ArrayList<Integer> getAscendingGameScores() {
+        ArrayList<Integer> sortedGameScores = new ArrayList<>(gameScores);
+        sortedGameScores.sort(null);
+        return sortedGameScores;
+    }
+
+    public ArrayList<Integer> getGameScores() {
+        return gameScores;
     }
 
     public ArrayList<Pokemon> getPokemonList() {
