@@ -6,6 +6,7 @@ import Utility.Clinic;
 
 import java.util.Scanner;
 
+
 public class Main {
     private Scanner scanner;
 
@@ -15,6 +16,7 @@ public class Main {
         PokeballShop pokeballShop = new PokeballShop();
         Clinic clinic = new Clinic();
         Player player = new Player("");
+
         System.out.println("Welcome to Pokemon GaOle for Assignment PRG1203!");
         System.out.println("Please enter your username: ");
         

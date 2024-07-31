@@ -120,9 +120,6 @@ public class Player {
         // remove pokeball from player's inventory after attempt
 
         removePokeball(pokeball.getName());
-        
-        // add captured pokemon to player's pokemon list
-        addPokemon(pokemon);
     }
 
     public void addPokeball(Pokeball pokeball) {
