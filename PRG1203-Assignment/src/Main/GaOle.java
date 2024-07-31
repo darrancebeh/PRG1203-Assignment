@@ -514,11 +514,13 @@ public class GaOle {
 
     public static List<Pokemon> choosePokemonFromListPokemon(ArrayList<Pokemon> playerPokemonList, int numberOfPokemon) {
         List<Pokemon> playerChosenPokemonList = new ArrayList<>();
+        int chosenPokemonIndexFlag = -1;
+        
         while (playerChosenPokemonList.size() < numberOfPokemon) {
             System.out.println("Pokemon List:\n");
             int pokemonIndex = 1;
             for (Pokemon pokemon : playerPokemonList) {
-                if(pokemon == null) {
+                if(pokemonIndex == chosenPokemonIndexFlag) {
                     System.out.print(pokemonIndex + ". ");
                     System.out.println("This Pokemon has already been chosen.");
                     System.out.println("----------------------------------------");
@@ -549,6 +551,7 @@ public class GaOle {
             }
 
             Pokemon chosenPokemon = playerPokemonList.get(chosenPokemonIndex - 1);
+            chosenPokemonIndexFlag = chosenPokemonIndex;
 
 
             playerChosenPokemonList.add(chosenPokemon);
@@ -559,8 +562,6 @@ public class GaOle {
             
 
             // make chosen pokemon null
-
-            playerPokemonList.set(chosenPokemonIndex - 1, null);
         }
 
         return playerChosenPokemonList;
@@ -568,17 +569,17 @@ public class GaOle {
 
     public static List<String> choosePokemonFromListString(String[] pokemonNameList, int numberOfPokemon) {
         List<String> chosenPokemonList = new ArrayList<>();
-
-
+        int chosenPokemonIndexFlag = -1;
         // display all pokemon in the list and associate each pokemon with a number
-
 
         while (chosenPokemonList.size() < numberOfPokemon) {
             System.out.println("Pokemon List:\n");
             int pokemonIndex = 1;
+            // store all the chosen pokemon indexes
+
             for (String pokemon : pokemonNameList) {
 
-                if(pokemon == "") {
+                if(pokemonIndex == chosenPokemonIndexFlag) {
                     System.out.print(pokemonIndex + ". ");
                     System.out.println("This Pokemon has already been chosen.");
                     System.out.println("----------------------------------------");
@@ -608,21 +609,14 @@ public class GaOle {
             }
 
             String chosenPokemonName = pokemonNameList[chosenPokemonIndex - 1];
+            chosenPokemonIndexFlag = chosenPokemonIndex;
+
 
             chosenPokemonList.add(chosenPokemonName);
             System.out.print("\033[H\033[2J"); 
 
             //make the first letter of the pokemon name uppercase and the rest lowercase
             System.out.println("You have chosen: " + chosenPokemonName.substring(0, 1).toUpperCase() + chosenPokemonName.substring(1).toLowerCase() + "\n\n");
-            
-            // remove chosen pokemon from list
-
-            for (int i = 0; i < pokemonNameList.length; i++) {
-                if (pokemonNameList[i].equalsIgnoreCase(chosenPokemonName)) {
-                    pokemonNameList[i] = "";
-                    break;
-                }
-            }
         }
         return chosenPokemonList;
     }
