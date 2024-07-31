@@ -39,7 +39,7 @@ public class Main {
         System.out.println("1. Start a new game");
         System.out.println("2. Visit the Pokeball Shop");
         System.out.println("3. Visit the Poke-Clinic");  
-        System.out.println("4. View Pokeball and Pokemon Inventory");
+        System.out.println("4. View Inventory");
         System.out.println("5. View Game Statistics");
         System.out.println("0. Exit\n");
 
